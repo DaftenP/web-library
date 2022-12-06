@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+    
+
+    
+    <!--../assets/dist/css/bootstrap.min.css-->
+<link href="../../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  <body>
+    <div class="container text-center">
+    <div class="text-bg-light p-3">
+      <span onClick="location.href='login.html'" style=" font-size:4em; color: black;">
+        책 Farm
+      </span>
+    </div>
+    <form method="post">
+        <table width="700" align="center">
+            <tr>
+                <td><label for="name">이름 </label></td>
+                <td> <input type="text" name="name" id="name" required></td>
+            </tr>
+            <tr>
+                <td><label for="id">아이디 </label></td>
+                <td> <input type="text" name="id" id="id" required></td>
+            </tr>
+            <tr>
+                <td><label for="pw">비밀번호 </label></td>
+                <td> <input type="password" name="pw" id="pw" required></td>
+            </tr>
+            <tr>
+                <td><label for="pw2">비밀번호 확인 </label></td>
+                <td> <input type="password" name="pw2" id="pw2" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">이메일 </label></td>
+                <td> <input type="email" name="email" id="email" required></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" id="submit"><input type="submit" value="회원가입"> <input type="reset" value="초기화"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
