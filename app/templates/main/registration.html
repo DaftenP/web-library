@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+    {% include "base.html" %}
+    <style>
+    div {
+        width: 100%;
+        height: 100%;
+    }
+    div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+    }
+    div.right {
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+<body>
+<br>
+<br>
+<br>
+<div>
+    <div class="left">
+        <form method="post">
+            <table align="center">
+                <tr align="center">
+                    <td align="right"><label for="address_name">배송지 별명</label></td>
+                    <td><input type="text" name="address_name" id="address_name" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="address">우편번호</label></td>
+                    <td><input type="text" name="address" id="address" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="base_address">기본주소 </label></td>
+                    <td><input type="text" name="base_address" id="base_address" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="detail_address">상세주소</label></td>
+                    <td><input type="text" name="detail_address" id="detail_address" required></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><input type="submit" value="등록"> <input type="reset" value="초기화">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <br>
+        <table align="center">
+            {% for item in row1 %}
+            <tr align="center">
+                <td align="right">배송지 별명 :</td>
+                <td>{{ item['배송지_별명'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">우편번호 :</td>
+                <td>{{ item['우편번호'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">기본주소 :</td>
+                <td>{{ item['배송지_기본주소'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">상세주소 :</td>
+                <td>{{ item['배송지_상세주소'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post">
+                        <input type="hidden" name="address_id" value="{{ item['배송지_id'] }}">
+                        <input type="submit" value="삭제" align="center">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="right">
+
+        <form method="post">
+            <table align="center">
+                <tr align="center">
+                    <td align="right"><label for="card_name">카드별명</label></td>
+                    <td><input type="text" name="card_name" id="card_name" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="card_num">카드번호</label></td>
+                    <td><input type="text" name="card_num" id="card_num" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="card_exp">유효기간 </label></td>
+                    <td><input type="text" name="card_exp" id="card_exp" required></td>
+                </tr>
+                <tr align="center">
+                    <td align="right"><label for="CVC">CVC</label></td>
+                    <td><input type="text" name="CVC" id="CVC" required></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><input type="submit" value="등록"> <input type="reset" value="초기화">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <br>
+        <table align="center">
+            {% for item in row2 %}
+            <tr></tr>
+            <tr align="center">
+                <td align="right">카드별명 :</td>
+                <td>{{ item['신용카드_별명'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">카드번호 :</td>
+                <td>{{ item['신용카드_번호'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">유효기간 :</td>
+                <td>{{ item['신용카드_유효기간'] }}</td>
+            </tr>
+            <tr align="center">
+                <td align="right">CVC :</td>
+                <td>{{ item['신용카드_CVC'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post">
+                        <input type="hidden" name="card_id" value="{{ item['신용카드_번호'] }}">
+                        <input type="submit" value="삭제" align="center">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</body>
+</html>
+

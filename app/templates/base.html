@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<link href="../../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<nav class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{{ url_for('production.basket') }}" class="nav-link px-2 text-white">장바구니</a></li>
+<!--                <li><a href="/templates/main/admintag.html" class="nav-link px-2 text-white">관리자 태그조회</a></li>-->
+<!--                <li><a href="/templates/main/adtaste.html" class="nav-link px-2 text-white">관리자 취향조회</a></li>-->
+                <li><a href="{{ url_for('main.orders') }}" class="nav-link px-2 text-white">주문 내역</a></li>
+                <li><a href="{{ url_for('main.tag_rank') }}" class="nav-link px-2 text-white">태그 순위</a></li>
+<!--                <li><a href="/templates/main/mytaste.html" class="nav-link px-2 text-white">취향 확인</a></li>-->
+                <li><a href="{{ url_for('production.book_registration') }}" class="nav-link px-2 text-white">도서등록</a></li>
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                <button type="button" class="btn btn-outline-light me-2"
+                        onclick="location.href='{{ url_for('main.logout') }}'">로그아웃
+                </button>
+                <button type="button" class="btn btn-outline-light me-2"
+                        onclick="location.href='{{ url_for('main.mypage') }}'">마이페이지
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-outline-light me-2"
+                        onclick="location.href='{{ url_for('main.login') }}'">로그인
+                </button>
+                <button type="button" class="btn btn-outline-light me-2"
+                        onclick="location.href='{{ url_for('main.signup') }}'">회원가입
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+      <span onClick="location.href='{{url_for('main.index')}}'" style=" font-size:4em; color: black;">
+        책 Farm</span>
+    </div>
+    <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" method="post"
+          action="{{ url_for('main.search', code='norm') }}">
+        <input type="search" class="form-control" placeholder="검색하기" aria-label="Search" name="keyword">
+    </form>
+</nav>

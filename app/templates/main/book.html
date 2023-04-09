@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="../../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='autocomplete.css') }}">
+    <script src="{{url_for('static', filename='add.js') }}"></script>
+    <script src="{{url_for('static', filename='autocomplete.js') }}"></script>
+    <script src="{{url_for('static', filename='allTag.js') }}"></script>
+    {% include "base.html" %}
+
+<body>
+<div>
+    <form action="{{ url_for('production.book', code=row['도서_id']) }}" method="post">
+
+        <img src="/static/{{ row['도서_표지'] }}" style="float: left;  margin-left: 200px; width:400px; height:500px;">
+        <div>
+            <p style="font-size:30px;">책 제목:<a> {{ row['도서_도서명'] }}</a></p>
+            <p style="font-size:30px;">가격: <a> {{ row['도서_판매가'] }}</a></p>
+            <p style="font-size:30px;">상세내용: <a> {{ row['도서_상세내용'] }}</a></p>
+        </div>
+        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+        <input hidden="hidden" name="category" value="{{ row['도서_카테고리'] }}">
+        <button type="submit" class="btn btn-secondary">장바구니</button>
+
+    </form>
+    <form action="{{ url_for('production.purchase') }}" method="post">
+        <input type="checkbox" name="buy_once" hidden="hidden" checked="checked"/>
+        <input name="book_code" hidden="hidden" value="{{ row['도서_id'] }}"/>
+        <button type="submit" class="btn btn-secondary">구매하기</button>
+    </form>
+</div>
+<div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+</div>
+{% for rv in review %}
+<div class="my-box"><strong class="title">
+    <span class="nickname">{{ rv['회원_별명'] }}</span><span class="" id=""></span>
+    <span class="date">{{ rv['리뷰_작성일'] }}</span></strong>
+    <div class="goodbadpart">
+        <div class="comment"><span>{{ rv['리뷰_내용'] }}</span></div>
+        <div id="tag_div_{{ rv['리뷰_id'] }}">
+        </div>
+    </div>
+    <hr>
+</div>
+{% endfor %}
+{% for tag in tags %}
+<script>
+    var drawTag = () => {
+        var div = document.getElementById('tag_div_'+ "{{ tag['id'] }}");
+        let a = document.createElement('a');
+        const name = "{{ tag['name'] }}";
+        const id = "{{ tag['tag'] }}";
+        a.setAttribute('href', "/search/"+id);
+        a.innerHTML = name+'  ';
+        div.appendChild(a)
+    };
+    drawTag();
+</script>
+{% endfor %}
+{% if g.user %}
+<div onload="allTag()">
+    <form action="{{ url_for('main.review_send', code=row['도서_id']) }}" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">리뷰</span>
+            </div>
+            <textarea class="form-control" id="bookReview"
+                      cols="30" name="review_text"
+                      rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <td>
+                    평점 :
+                </td>
+                <td>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                태그 목록
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="tagTable">
+            </tr>
+            </tbody>
+        </table>
+        <!-- 아래의 input의 값을 받을 때, 자동완성 기능이 작동합니다. -->
+        <div class="srch_form autocomplete" onload="init()">
+            <input id="tagSearch" placeholder="태그검색">
+            <input type="button" value="등록" onClick="addTag()">
+        </div>
+        <script>
+    // autocomplete 부분을 생성
+    window.onload = function () {
+        autocomplete.setAutocomplete(document.getElementById("tagSearch"), allTag())
+    }
+
+
+
+
+
+        </script>
+
+        <div>
+            <button type="submit">리뷰 작성</button>
+        </div>
+
+    </form>
+
+</div>
+{% endif %}
+{%with messages = get_flashed_messages()%}
+{%if messages %}
+<script type="text/javascript">
+      alert("{{messages[-1]}}");
+
+
+
+
+
+
+
+</script>
+{%endif%}
+{%endwith%}
+
+</body>
+<footer>
+    {% for item in tag %}
+    <span class="tags" hidden>{{ item }}</span>
+    {% endfor %}
+</footer>
+</html>

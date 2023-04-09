@@ -3,13 +3,16 @@
 
 from flask import Flask
 import os
+from app.main.index import main as main
+from app.main.production import production
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-from app.main.index import main as main
-
 app.register_blueprint(main)
+app.register_blueprint(production)
+
+
 
 # 추가할 모듈이 있다면 추가
 # config 파일이 있다면 추가

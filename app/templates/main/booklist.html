@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+</head>
+<!--../assets/dist/css/bootstrap.min.css-->
+<link href="/static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/assets/dist/css/ordersearch.css" rel="stylesheet">
+{% include "base.html" %}
+<body>
+<div class="book">
+    <table class="cart__list" align="center">
+        <form>
+            <thead>
+            <tr style="font-size: 30px;">
+                <td>책표지</td>
+                <td colspan="1">책이름</td>
+                <td>저자</td>
+                <td>출판사</td>
+                <td>가격</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in row %}
+            <tr style="font-size: 25px;" align="center">
+                <td><img src="{{ url_for('static', filename=item['도서_표지']) }}" style="max-width: 200px; height: auto;">
+                </td>
+                <td><a href="{{ url_for('production.book', code=item['도서_id']) }}" class="nav-link px-2 text-black"
+                       colspan="1"> {{ item['도서_도서명'] }}</a>
+                </td>
+                <td><span>{{ item['도서_저자'] }}</span><br></td>
+                <td><span>{{ item['도서_출판사'] }}</span><br></td>
+                <td>{{ item['도서_판매가'] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </form>
+    </table>
+</div>
+</body>
+</html>

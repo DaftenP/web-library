@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="/static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/dist/css/ordersearch.css" rel="stylesheet">
+    {% include "base.html" %}
+<body>
+<section class="cart" align="center">
+    <table class="cart__list">
+        <form>
+            <thead>
+            <tr>
+                <td>이미지</td>
+                <td>제품명</td>
+                <td colspan="1">가격</td>
+                <td>수량</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in row %}
+            <tr>
+                <td><img src="{{ url_for('static', filename=item['도서_표지']) }}" style="max-width: 30%; height: auto;">
+                </td>
+                <td><span style="font-size: 35px;">{{ item['도서_도서명'] }}</span></td>
+                <td><span style="font-size: 35px;">{{ item['도서_판매가'] }}</span></td>
+                <td><span style="font-size: 35px;">{{ item['주문항목_수량'] }}</span></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </form>
+    </table>
+</section>
+</body>
+</head>
+</html>

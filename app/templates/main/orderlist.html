@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="/static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/dist/css/ordersearch.css" rel="stylesheet">
+    {% include "base.html" %}
+<body>
+<section class="cart" align="center">
+    <table class="cart__list">
+        <form>
+            <thead>
+            <tr>
+                <td>주문번호</td>
+                <td colspan="1"></td>
+                <td>주문일자</td>
+                <td>주문총액</td>
+                <td>배송비</td>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in row %}
+            <tr>
+                <td><span style="font-size: 35px;">{{ item['주문_id'] }}</span></td>
+                <td><a href="{{ url_for('main.orderitems', code=item['주문_id']) }}" style="font-size: 28px;">구매 항목 보기</a>
+                </td>
+                <td><span style="font-size: 35px;">{{ item['주문일자'] }}</span></td>
+                <td><span style="font-size: 35px;">{{ item['주문총액'] }}</span></td>
+                <td><span style="font-size: 35px;">무료</span></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </form>
+    </table>
+</section>
+</body>
+</head>
+</html>

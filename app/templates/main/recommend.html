@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="../../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap"/>
+                    </svg>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/templates/main/basket.html" class="nav-link px-2 text-white">장바구니</a></li>
+                    <li><a href="/templates/main/admintag.html" class="nav-link px-2 text-white">관리자 태그조회</a></li>
+                    <li><a href="/templates/main/adtaste.html" class="nav-link px-2 text-white">관리자 취향조회</a></li>
+                    <li><a href="/templates/main/mytag.html" class="nav-link px-2 text-white">태그 순위</a></li>
+                    <li><a href="/templates/main/mytaste.html" class="nav-link px-2 text-white">취향 확인</a></li>
+
+                </ul>
+                <div class="text-end">
+                    <button type="button" onClick="location.href='login.html'" class="btn btn-outline-light me-2">로그인
+                    </button>
+                    <button type="button" class="btn btn-outline-light me-2" onClick="location.href='sign.html'">회원가입
+                    </button>
+                </div>
+    </header>
+<body>
+<div class="container text-center">
+      <span onClick="location.href='main.html'" style=" font-size:4em; color: black;">
+        책 Farm
+</div>
+<table align="center">
+    <td>
+        <input type="checkbox" name="interest" value="health" id="health"><label for="reading">건강</label>
+        <input type="checkbox" name="interest" value="economic" id="economic"><label for="economic">경제경영</label>
+        <input type="checkbox" name="interest" value="foreign" id="foreign"><label for="foreign">외국어</label>
+        <input type="checkbox" name="interest" value="university" id="university"><label for="university">대학교재</label>
+        <input type="checkbox" name="interest" value="children" id="children"><label for="children">어린이</label>
+        <input type="checkbox" name="interest" value="comic" id="comic"><label for="comic">만화</label>
+        <input type="checkbox" name="interest" value="novel" id="novel"><label for="novel">소설</label>
+        <input type="checkbox" name="interest" value="humanities" id="humanities"><label for="humanities">인문</label>
+        <input type="checkbox" name="interest" value="science" id="science"><label for="science">과학</label>
+        <input type="checkbox" name="interest" value="religion" id="religion"><label for="religion">종교</label>
+        <input type="checkbox" name="interest" value="poetry" id="poetry"><label for="poetry">시</label>
+        <input type="checkbox" name="interest" value="history" id="history"><label for="history">역사</label>
+        <input type="checkbox" name="interest" value="society" id="society"><label for="society">사회</label>
+        <input type="checkbox" name="interest" value="sport" id="sport"><label for="sport">스포츠</label>
+        <input type="checkbox" name="interest" value="cook" id="cook"><label for="cook">요리</label>
+        <input type="checkbox" name="interest" value="meditation" id="meditation"><label for="meditation">명상</label>
+        <input type="checkbox" name="interest" value="government" id="government"><label for="government">공무원</label>
+    </td>
+    <tr align="center">
+        <td colspan="2" id="submit"><input type="submit" value="등록하기"></td>
+    </tr>
+</table>
+</body>
+</html>

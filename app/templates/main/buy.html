@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+
+    <link href="../../static/assets/dist/css/ordersearch.css" rel="stylesheet">
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <script src="{{ url_for('static', filename='calcsum.js') }}"></script>
+    <script src="{{ url_for('static', filename='loadAddress.js') }}"></script>
+    <script src="{{ url_for('static', filename='loadCard.js') }}"></script>
+    {% include "base.html" %}
+<body onload="calcSum()">
+<form action="{{url_for('production.buy')}}" method="post">
+    <div class="order_header">
+        <h3 class="order_payment">
+            <span class="blind"> 주문/결제</span>
+            <section class="cart">
+                <table class="cart__list" align="center">
+                    <thead>
+                    <tr style="font-size: 25px;">
+
+
+                        <td>이미지</td>
+                        <td>상품명</td>
+                        <td>수량</td>
+                        <td>상품 금액</td>
+                        <td>배송비</td>
+                    </tr>
+                    </thead>
+                    <tbody align="center" id="items">
+                    {% for item in row %}
+                    <tr>
+                        <td>
+                            <img
+                                    src="{{url_for('static', filename=item['도서_표지']) }}"
+                                    style="max-width: 20%; height: auto"
+                            /></td>
+                        <td>
+                            <a
+                                    href="{{url_for('production.book', code=item['도서_id']) }}"
+                                    class="nav-link px-2 text-black"
+                                    style="font-size: 35px"
+                            >{{ item['도서_도서명'] }}</a>
+                        </td>
+                        <td><input type="number" name="{{ item['도서_id'] }}" value="1" onchange="calcSum()" min="1"><br>
+                        </td>
+                        <td>
+                  <span style="font-size: 35px"
+                  >{{ item['도서_판매가'] }}</span
+                  ><br/>
+                        </td>
+                        <td style="font-size: 35px;">무료</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>총액 :</td>
+                        <td><span id="sum">0</span></td>
+                        <td>원</td>
+                        <td></td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <input hidden="hidden" id="sum1" name="sum">
+            </section>
+
+
+            <div class="deliver_wrap" align="center">
+                <h1>배송지정보</h1>
+                <select onchange="loadAddress()" id="select_address">
+                    <option value="">배송지 선택</option>
+                    {% for item in address %}
+                    <option value="{{ item['배송지_id'] }}">{{ item['배송지_별명'] }}</option>
+                    {% endfor %}
+                </select>
+                {% for item in address %}
+                <input type="hidden" id="{{ item['배송지_id'] }}_num" value="{{ item['우편번호'] }}">
+                <input type="hidden" id="{{ item['배송지_id'] }}_base" value="{{ item['배송지_기본주소'] }}">
+                <input type="hidden" id="{{ item['배송지_id'] }}_detail" value="{{ item['배송지_상세주소'] }}">
+                {% endfor %}
+                <div>
+                    <ul>
+                        <div>
+                            <strong class="req" title="필수입력">기본주소</strong>
+                            <input type="text" title="기본주소" name="base_address" id="base_address">
+                        </div>
+
+                        <div>
+                            <strong class="req" title="필수입력">우편번호</strong>
+                            <input type="text" title="우편번호" maxlength="7" name="address" id="address">
+                        </div>
+                        <div>
+                            <strong class="req" title="필수입력">상세주소</strong>
+                            <input type="text" title="상세주소" name="detail_address" id="detail_address">
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="card_wrap" align="center">
+                <h1>결제수단</h1>
+                <select onchange="loadCard()" id="select_card">
+                    <option value="">카드 선택</option>
+                    {% for item in card %}
+                    <option value="{{ item['신용카드_번호'] }}">{{ item['신용카드_별명'] }}</option>
+                    {% endfor %}
+                </select>
+                {% for item in card %}
+                <input type="hidden" id="{{ item['신용카드_번호'] }}_num" value="{{ item['신용카드_번호'] }}">
+                <input type="hidden" id="{{ item['신용카드_번호'] }}_exp" value="{{ item['신용카드_유효기간'] }}">
+                <input type="hidden" id="{{ item['신용카드_번호'] }}_CVC" value="{{ item['신용카드_CVC'] }}">
+                {% endfor %}
+                <div class="order_option_wrap">
+                    <div>
+                        <ul>
+                            <div>
+                                <strong class="req" title="필수입력">카드번호</strong>
+                                <input type="text" title="신용카드번호" name="card_num" id="card_num">
+                            </div>
+                            <div>
+                                <strong class="req" title="필수입력">유효기간</strong>
+                                <input type="text" title="유효기간" maxlength="7" name="card_exp" id="card_exp">
+                            </div>
+                            <div>
+                                <strong class="req" title="필수입력">CVC</strong>
+                                <input type="text" title="카드 종류" name="card_CVC" id="card_CVC">
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div align="center">
+                    <button type="submit" class="cart__bigorderbtn right">결제하기</button>
+                </div>
+            </div>
+        </h3>
+    </div>
+</form>
+</body>
+</html>

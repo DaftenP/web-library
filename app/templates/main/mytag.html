@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>DB 서버</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/blog/">
+
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="../../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% include "base.html" %}
+</head>
+<body>
+
+<div class="container text-left">
+    <div class="row">
+        <div class="col order-last">
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary active" aria-current="page">일간</a>
+                <a href="#" class="btn btn-primary">주간</a>
+                <a href="#" class="btn btn-primary">월간</a>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+
+        <thead>
+        <tr>
+            <th scope="col">순위</th>
+            <th scope="col" style="font-size: 2em;">태그 순위</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td onclick="location.href='book.html'">#태그</td>
+
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td onclick="location.href='book.html'">#태그</td>
+
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2" onclick="location.href='book.html'">#태그</td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td colspan="2" onclick="location.href='book.html'">#태그</td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td colspan="2" onclick="location.href='book.html'">#태그</td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td colspan="2" onclick="location.href='book.html'">#태그</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+
+
+</body>
+</html>
+  

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta
+            name="author"
+            content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2"/>
+    <title>DB 서버</title>
+
+    <link
+            rel="canonical"
+            href="https://getbootstrap.com/docs/5.2/examples/blog/"
+    />
+
+    <!--../assets/dist/css/bootstrap.min.css-->
+    <link href="../../static/assets/dist/css/bascket.css" rel="stylesheet"/>
+    <link
+            href="../../static/assets/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    {% include "base.html" %}
+<body>
+<section class="cart" align="center">
+    <table class="cart__list">
+        <form method="post">
+            <thead>
+            <tr>
+                <td>체크박스</td>
+                <td colspan="1">책이미지</td>
+                <td>상품정보</td>
+                <td>상품금액</td>
+                <td>배송비</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in row %}
+            <tr>
+                <td><input type="checkbox" name="{{ item['도서_id'] }}"/></td>
+                <td>
+                    <img
+                            src="{{url_for('static', filename=item['도서_표지']) }}"
+                            style="max-width: 20%; height: auto"
+                    />
+                </td>
+                <td>
+                    <a
+                            href="{{url_for('production.book', code=item['도서_id']) }}"
+                            class="nav-link px-2 text-black"
+                            style="font-size: 35px"
+                    >{{ item['도서_도서명'] }}</a
+                    >
+                </td>
+                <td>
+                  <span style="font-size: 35px"
+                  >{{ item['도서_판매가'] * item['장바구니항목_수량'] }}</span
+                  ><br/>
+                </td>
+                <td style="font-size: 35px">무료</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="1">
+                    <button
+                            type="submit"
+                            class="cart__bigorderbtn left"
+                            style="width: 150px"
+                    >
+                        선택상품 삭제
+                    </button>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </form>
+    </table>
+    <form action="{{ url_for('production.purchase') }}" method="post">
+        <div>
+            <input type="checkbox" name="buy_once" hidden="hidden"/>
+            <button type="submit" class="cart__bigorderbtn right">주문하기</button>
+        </div>
+    </form>
+
+</section>
+</body>
+</head>
+</html>

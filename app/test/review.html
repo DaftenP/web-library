@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>리뷰 작성</title>
+<!-- css에는 autocomplet의 요소를 만들떄 필요한 css가 담겨져 있습니다. -->
+<link rel="stylesheet" href="autocomplete.css">
+<!-- css에는 autocomplet의 요소를 만들떄 필요한 scrpit가 담겨져 있습니다. -->
+<script type="text/javascript" src="autocomplate.js"></script>
+<!-- css에는 autocomplet의 요소의 샘플 json의 값이 담겨져 있습니다. -->
+<script type="text/javascript" src="animal.js"></script>
+<script type="text/javascript" src="add.js"></script>
+</head>
+<form>
+<body>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">리뷰</span>
+        </div>
+        <textarea class="form-control" id="bookReview"
+                  cols="30"
+                  rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
+    
+    </div>
+
+
+    <table>
+        <thead>
+            <tr>
+                태그 목록
+            </tr>
+            </thead>
+    <tbody id="tagTable">
+        <tr>
+        <td>
+            <button type="button" class="btn_delete">태그1</button>
+        </td>
+        </tr>
+        <tr>
+            <td>
+            <button type="button" class="btn_delete">태그2</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+ <!-- 아래의 input의 값을 받을 때, 자동완성 기능이 작동합니다. -->
+ <div class="srch_form autocomplete" onload="init()">
+    <input id="tagSearch" placeholder="태그검색">
+    <input type="button" value="등록" onClick="addTag()">
+</div>
+<script>
+    // autocomplete 부분을 생성
+    window.onload = function () {
+        autocomplete.setAutocomplete(document.getElementById("tagSearch"), animal)
+    }
+</script>
+
+
+
+</div>
+<button type="submit">리뷰 작성</button>
+</div>
+
+</form>
+
+
+
+
+</body>
